@@ -18,7 +18,9 @@
 @property (strong, nonatomic) IBOutlet UITextField *statetext;
 @property (strong, nonatomic) IBOutlet UIButton *savebutton;
 
+@property (strong, nonatomic) IBOutlet UIPickerView *myPicker;
 
+@property (strong, nonatomic) IBOutlet UITextField *mobilenotext;
 
 
 - (IBAction)datepic:(UIDatePicker *)sender;

@@ -8,7 +8,9 @@
             <connections>
                 <outlet property="dobtext" destination="a9i-Xf-inR" id="oTP-r7-s0B"/>
                 <outlet property="locationtext" destination="JNj-tF-yH2" id="XVO-0O-oLB"/>
+                <outlet property="mobilenotext" destination="QwZ-Th-hlA" id="v1v-B2-bcg"/>
                 <outlet property="myImage" destination="Bqv-aR-GVt" id="J9g-SK-RlZ"/>
+                <outlet property="myPicker" destination="XZI-46-Wnp" id="2Vv-dO-IFi"/>
                 <outlet property="mydate" destination="rc6-Qj-XKg" id="5zg-zg-4yV"/>
                 <outlet property="nametext" destination="2ae-nG-3x7" id="raY-S6-smA"/>
                 <outlet property="savebutton" destination="Sha-le-END" id="fEt-T3-FUa"/>
@@ -29,46 +31,41 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date of Birth" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a9i-Xf-inR">
-                    <rect key="frame" x="85" y="180" width="205" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
                 <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="rc6-Qj-XKg">
-                    <rect key="frame" x="85" y="223" width="205" height="131"/>
+                    <rect key="frame" x="85" y="281" width="205" height="131"/>
                     <date key="date" timeIntervalSinceReferenceDate="451383585.21475703">
                         <!--2015-04-22 08:19:45 +0000-->
                     </date>
                     <date key="minimumDate" timeIntervalSinceReferenceDate="-978181200">
                         <!--1970-01-02 11:00:00 +0000-->
                     </date>
-                    <date key="maximumDate" timeIntervalSinceReferenceDate="631105200">
-                        <!--2020-12-31 11:00:00 +0000-->
+                    <date key="maximumDate" timeIntervalSinceReferenceDate="628686000">
+                        <!--2020-12-03 11:00:00 +0000-->
                     </date>
                     <locale key="locale" localeIdentifier="en_AU"/>
                     <connections>
                         <action selector="datepic:" destination="-1" eventType="valueChanged" id="39n-ad-9wt"/>
                     </connections>
                 </datePicker>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Country" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JNj-tF-yH2">
-                    <rect key="frame" x="85" y="370" width="104" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Country" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JNj-tF-yH2">
+                    <rect key="frame" x="85" y="428" width="104" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XZI-46-Wnp">
-                    <rect key="frame" x="56" y="431" width="263" height="140"/>
+                    <rect key="frame" x="56" y="466" width="263" height="140"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="C2M-w2-PWL"/>
                         <outlet property="delegate" destination="-1" id="PZT-Pc-UJp"/>
                     </connections>
                 </pickerView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OGZ-9R-Y3q">
-                    <rect key="frame" x="197" y="370" width="97" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OGZ-9R-Y3q">
+                    <rect key="frame" x="197" y="428" width="97" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sha-le-END">
-                    <rect key="frame" x="170" y="594" width="34" height="30"/>
+                    <rect key="frame" x="170" y="614" width="34" height="30"/>
                     <state key="normal" title="Save">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -76,6 +73,16 @@
                         <action selector="savebutton:" destination="-1" eventType="touchUpInside" id="wPm-7e-neo"/>
                     </connections>
                 </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mobile No." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QwZ-Th-hlA">
+                    <rect key="frame" x="85" y="188" width="205" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date of Birth" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a9i-Xf-inR">
+                    <rect key="frame" x="85" y="234" width="205" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>

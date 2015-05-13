@@ -7,6 +7,7 @@
 //
 
 #import "Choose.h"
+#import "ConfirmationPage.h"
 
 @interface Choose ()
 {
@@ -16,22 +17,31 @@
     NSArray *china;
     NSArray *australia;
     NSArray *england;
+    NSMutableArray *cities;
     NSString *club;
+    NSUserDefaults *birthdayinfo;
 }
 
 @end
 
 @implementation Choose
-@synthesize myImage, nametext, dobtext, mydate, locationtext, statetext,savebutton;
+@synthesize myImage, nametext, dobtext, mydate, locationtext, statetext,savebutton,myPicker,mobilenotext;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [myImage setImage:[UIImage imageNamed:@"gift2.jpg"]];
+    cities =[[NSMutableArray alloc]init];
     country= [[NSArray alloc]initWithObjects:@"India",@"New zeland", @"China", @"Australia", @"England", nil];
     India= [[NSArray alloc]initWithObjects:@"tamilnadu",@"kerala",@"maharastra",@"bangalore",@"andhra pradesh", nil];
 newzeland=[[NSArray alloc]initWithObjects:@"auckland",@"hutt city",@"porirua",@"manukan",@"nelson", nil];
     china=[[NSArray alloc]initWithObjects:@"shangai",@"beijing", @"tianjin",@"guagzhou",@"shenzhen", nil];
     australia=[[NSArray alloc]initWithObjects:@"sydney",@"melbourne",@"brisbane",@"perth",@"adelaide", nil];
     england=[[NSArray alloc]initWithObjects:@"norwich",@"salford",@"wells",@"derby",@"chester", nil];
+    nametext.text=[birthdayinfo valueForKey:@"Name"];
+    dobtext.text=[birthdayinfo valueForKey:@"Date Of Birth"];
+    mobilenotext.text=[birthdayinfo valueForKey:@"Contact no"];
+    locationtext.text=[birthdayinfo valueForKey:@"Country"];
+    statetext.text=[birthdayinfo valueForKey:@"State"];
+    
     
     
 }
@@ -45,26 +55,9 @@ newzeland=[[NSArray alloc]initWithObjects:@"auckland",@"hutt city",@"porirua",@"
     if (component ==0) {
         return country.count;
     }
-    else
+    else if(component == 1)
     {
-        if ([club isEqualToString:@"India"]) {
-            return [India count];
-        }
-        if ([club isEqualToString:@"New zeland"]) {
-            return [newzeland count];
-        }
-        if ([club isEqualToString:@"China"]) {
-            return [china count];
-        }
-        if ([club isEqualToString:@"Australia"]) {
-            return [australia count];
-        }
-        if ([club isEqualToString:@"England"]) {
-            return [england count];
-        }
-
-
-
+        return cities.count;
         
     }
     return 0;
@@ -76,24 +69,9 @@ newzeland=[[NSArray alloc]initWithObjects:@"auckland",@"hutt city",@"porirua",@"
     if (component ==0) {
         return [country objectAtIndex:row];
     }
-    else
+    else if(component ==1)
     {
-        if ([club isEqualToString:@"India"]) {
-            return [India objectAtIndex:row];
-        }
-        if ([club isEqualToString:@"New zeland"]) {
-            return [newzeland objectAtIndex:row];
-        }
-        if ([club isEqualToString:@"China"]) {
-            return [china objectAtIndex:row];
-        }
-        if ([club isEqualToString:@"Australia"]) {
-            return [australia objectAtIndex:row];
-        }
-        if ([club isEqualToString:@"England"]) {
-            return [england objectAtIndex:row];
-        }
-        
+        return [cities objectAtIndex:row];
     }
     
         return 0;
@@ -107,28 +85,44 @@ newzeland=[[NSArray alloc]initWithObjects:@"auckland",@"hutt city",@"porirua",@"
 {
    
     if (component ==0) {
-        club=[[NSString alloc] initWithFormat:@"%@" , [country objectAtIndex:row]];
-        [pickerView reloadComponent:1];
         locationtext.text=[country objectAtIndex:row];
+        if (row == 0) {
+            [cities removeAllObjects];
+            [cities addObjectsFromArray:India];
+            [myPicker reloadAllComponents];
+            
+        }
+        if (row == 1) {
+            [cities removeAllObjects];
+            [cities addObjectsFromArray:newzeland];
+            [myPicker reloadAllComponents];
+            
+        }
+        if (row == 2) {
+            [cities removeAllObjects];
+            [cities addObjectsFromArray:china];
+            [myPicker reloadAllComponents];
+            
+        }
+        if (row == 3) {
+            [cities removeAllObjects];
+            [cities addObjectsFromArray:australia];
+            [myPicker reloadAllComponents];
+            
+        }
+        if (row == 4) {
+            [cities removeAllObjects];
+            [cities addObjectsFromArray:england];
+            [myPicker reloadAllComponents];
+            
+        }
+
     }
-    else
+       
+    else if(component ==1)
     {
-        if ([club isEqualToString:@"India"]) {
-            statetext.text=[India objectAtIndex:row];
-        }
-        if ([club isEqualToString:@"New zeland"]) {
-            statetext.text=[newzeland objectAtIndex:row];
-        }
-        if ([club isEqualToString:@"China"]) {
-            statetext.text=[china objectAtIndex:row];
-        }
-        if ([club isEqualToString:@"Australia"]) {
-            statetext.text=[australia objectAtIndex:row];
-        }
-        if ([club isEqualToString:@"England"]) {
-            statetext.text=[england objectAtIndex:row];
-        }
         
+            statetext.text=[cities objectAtIndex:row];
     }
 
     
@@ -152,23 +146,37 @@ newzeland=[[NSArray alloc]initWithObjects:@"auckland",@"hutt city",@"porirua",@"
         UIAlertView *addalert =[[UIAlertView alloc]initWithTitle:nil message:@"Select the Date of birth" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
         [addalert show];
     }
+    else if (mobilenotext.text.length < 1) {
+        UIAlertView *addalert =[[UIAlertView alloc]initWithTitle:nil message:@"Enter the contact Number" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+        [addalert show];
+    }
+
     else if (locationtext.text.length < 1) {
         UIAlertView *addalert =[[UIAlertView alloc]initWithTitle:nil message:@"Select the country" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
         [addalert show];
     }
     else if (statetext.text.length < 1) {
-        UIAlertView *addalert =[[UIAlertView alloc]initWithTitle:nil message:@"Select the city" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+        UIAlertView *addalert =[[UIAlertView alloc]initWithTitle:nil message:@"Select the State" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
         [addalert show];
     }
     else
     {
-        UIAlertView *addalert =[[UIAlertView alloc]initWithTitle:nil message:@"Successfully added" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-        [addalert show];
+        birthdayinfo=[NSUserDefaults standardUserDefaults];
+        [birthdayinfo setObject:nametext.text forKey:@"Name"];
+        [birthdayinfo setObject:dobtext.text forKey:@"Date Of Birth"];
+        [birthdayinfo setObject:locationtext.text forKey:@"Country"];
+        [birthdayinfo setObject:statetext.text forKey:@"State"];
+        [birthdayinfo setObject:mobilenotext.text forKey:@"Contact no"];
+        
+        ConfirmationPage *page=[[ConfirmationPage alloc]initWithNibName:@"ConfirmationPage" bundle:nil];
+        [self presentViewController:page animated:YES completion:nil];
+        
     }
-    nametext.text=@"";
+  /*  nametext.text=@"";
     dobtext.text=@"";
     locationtext.text=@"";
     statetext.text=@"";
+    mobilenotext.text=@""; */
     
 
 
